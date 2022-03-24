@@ -12,13 +12,14 @@ class Snake(Actor):
     Attributes:
         _points (int): The number of points the food is worth.
     """
-    def __init__(self,x,y):
+    def __init__(self,x,y,text):
         """calls the '__init__()' method of the super class (Actor)
         builds the segment list
         builds the snake by calling the 'prepare_body()' method"""
         super().__init__()
         self._segments = []
-        self._prepare_body(x,y)
+        self._prepare_body(x,y,text)
+        self._segment_text='_'
 
     def get_segments(self):
         """gets the segments of the snake"""
@@ -48,31 +49,7 @@ class Snake(Actor):
             velocity = tail.get_velocity()
             offset = velocity.reverse()
             position = tail.get_position().add(offset)
-            
-            segment = Actor()
-            segment.set_position(position)
-            segment.set_velocity(velocity)
-            segment.set_text("#")
-            segment.set_color(color)
-            self._segments.append(segment)
-
-    def turn_head(self, velocity):
-        """moves the head towards the input direction at the set speed"""
-        self._segments[0].set_velocity(velocity)
-    
-    def _prepare_body(self,x,y):
-        """builds the snake's body for the game to start"""
-        # x = int(constants.MAX_X / 4)
-        # y = int(constants.MAX_Y / 2)
-
-        for i in range(constants.SNAKE_LENGTH):
-            position = Point(x - i * constants.CELL_SIZE, y)
-            velocity = Point(1 * constants.CELL_SIZE, 0)
-            text = "8" if i == 0 else "#"
-            if x==int(constants.MAX_X / 4):
-                color = constants.YELLOW if i == 0 else constants.GREEN
-            else:
-                color = constants.YELLOW if i == 0 else constants.BLUE
+            text=self._segment_text
             
             segment = Actor()
             segment.set_position(position)
@@ -80,6 +57,28 @@ class Snake(Actor):
             segment.set_text(text)
             segment.set_color(color)
             self._segments.append(segment)
+
+    def turn_head(self, velocity):
+        """moves the head towards the input direction at the set speed"""
+        self._segments[0].set_velocity(velocity)
+    
+    def _prepare_body(self,x,y,text):
+        """builds the snake's body for the game to start"""
+        position = Point(x - 1 * constants.CELL_SIZE, y)
+        velocity = Point(1 * constants.CELL_SIZE, 0)
+        text = text
+        color = constants.YELLOW
+            
+        segment = Actor()
+        segment.set_position(position)
+        segment.set_velocity(velocity)
+        segment.set_text(text)
+        segment.set_color(color)
+        self._segments.append(segment)
+
     def clear_segments(self):
         """clears all segments from its list"""
         self._segments.clear()
+
+    def set_segment_text(self,text):
+        self._segment_text=text

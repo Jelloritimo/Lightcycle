@@ -44,8 +44,11 @@ class VideoService:
             width = pyray.measure_text(text, font_size)
             offset = int(width / 2)
             x -= offset
-            
-        pyray.draw_text(text, x, y, font_size, color)
+        if '.png' in text:
+            new_image=pyray.load_texture(text)    
+            pyray.draw_texture(new_image,x,y, pyray.WHITE)
+        else:    
+            pyray.draw_text(text, x, y, font_size, color)
         
     def draw_actors(self, actors, centered=False):
         """Draws the text for the given list of actors on the screen.

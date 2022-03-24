@@ -19,9 +19,11 @@ def main():
     
     # create the cast
     cast = Cast()
-    cast.add_actor("snakes", Snake(int(constants.MAX_X / 4),int(constants.MAX_Y / 2)))
+    tron = "C:/Users/USER/Desktop/Python/group/tron/Lightcycle/Lightcycle/assets/tronplayerw.png"
+    enemy ="C:/Users/USER/Desktop/Python/group/tron/Lightcycle/Lightcycle/assets/tronenemyk.png"
+    cast.add_actor("snakes", Snake(int(constants.MAX_X / 2),15*37,tron))
     cast.add_actor("scores", Score(Point(0, 0),'one'))
-    cast.add_actor("player2", Snake(int(constants.MAX_X / 2)+int(constants.MAX_X / 4),int(constants.MAX_Y / 2)))
+    cast.add_actor("player2", Snake(int(constants.MAX_X / 2),15*0,enemy))
     cast.add_actor('score2', Score(Point(780, 0),'two'))
    
     # start the game
