@@ -51,6 +51,8 @@ class HandleCollisionsAction(Action):
         segments2 =player2.get_segments()[1:]
         score1=cast.get_first_actor("scores")
         score2=cast.get_first_actor("score2")
+        tron=head.get_text()
+        enemy=head2.get_text()
         # for segment in segments:
         #     if head.get_position().equals(segment.get_position()):
         #         self._is_game_over = True
@@ -65,9 +67,9 @@ class HandleCollisionsAction(Action):
                 self._is_game_over = True
                 score1.add_points(1,'one')
                 snake.clear_segments()
-                snake._prepare_body(int(constants.MAX_X / 4),int(constants.MAX_Y / 2))
+                snake._prepare_body(int(constants.MAX_X / 4),int(constants.MAX_Y / 2),tron)
                 player2.clear_segments()
-                player2._prepare_body(int(constants.MAX_X / 2)+int(constants.MAX_X / 4),int(constants.MAX_Y / 2))
+                player2._prepare_body(int(constants.MAX_X / 2)+int(constants.MAX_X / 4),int(constants.MAX_Y / 2), enemy)
                 
         for segment in segments2:
         #     if head2.get_position().equals(segment.get_position()):
@@ -82,9 +84,9 @@ class HandleCollisionsAction(Action):
                 self._is_game_over = True 
                 score2.add_points(1,'two')
                 snake.clear_segments()
-                snake._prepare_body(int(constants.MAX_X / 4),int(constants.MAX_Y / 2))
+                snake._prepare_body(int(constants.MAX_X / 4),int(constants.MAX_Y / 2),tron)
                 player2.clear_segments()
-                player2._prepare_body(int(constants.MAX_X / 2)+int(constants.MAX_X / 4),int(constants.MAX_Y / 2))
+                player2._prepare_body(int(constants.MAX_X / 2)+int(constants.MAX_X / 4),int(constants.MAX_Y / 2),enemy)
                        
 
     def _handle_game_over(self, cast, script):
