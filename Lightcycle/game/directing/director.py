@@ -7,13 +7,14 @@ class Director:
         _video_service (VideoService): For providing video output.
     """
 
-    def __init__(self, video_service):
+    def __init__(self, video_service,key_board):
         """Constructs a new Director using the specified video service.
         
         Args:
             video_service (VideoService): An instance of VideoService.
         """
         self._video_service = video_service
+        self._keyboard=key_board
         
     def start_game(self, cast, script):
         """Starts the game using the given cast and script. Runs the main game loop.

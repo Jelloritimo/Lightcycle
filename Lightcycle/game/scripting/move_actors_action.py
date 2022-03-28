@@ -8,6 +8,8 @@ class MoveActorsAction(Action):
     The responsibility of MoveActorsAction is to move all the actors that have a velocity greater
     than zero.
     """
+    def __init__(self):
+        self._start=False
 
     def execute(self, cast, script):
         """Executes the move actors action.
@@ -18,5 +20,10 @@ class MoveActorsAction(Action):
         """
         
         actors = cast.get_all_actors()
-        for actor in actors:
-            actor.move_next()
+        keys=['a','w','s','d']
+        for i in keys:
+            if KeyboardService().is_key_down(i):
+                self._start=True
+        if self._start:
+            for actor in actors:
+                actor.move_next()

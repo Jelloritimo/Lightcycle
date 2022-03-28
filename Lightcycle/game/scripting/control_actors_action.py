@@ -2,6 +2,7 @@ import constants
 from game.scripting.action import Action
 from game.shared.point import Point
 import os
+from game.scripting.move_actors_action import MoveActorsAction
 
 class ControlActorsAction(Action):
     """
@@ -22,6 +23,7 @@ class ControlActorsAction(Action):
         self._keyboard_service = keyboard_service
         self._direction = Point(constants.CELL_SIZE, 0)
         self._direction2 = Point(constants.CELL_SIZE, 0)
+        self.move_actors= MoveActorsAction()
 
 
     def execute(self, cast, script):

@@ -1,8 +1,11 @@
 from pickle import TRUE
 from game.scripting.action import Action
 import constants
+from game.services.keyboard_service import KeyboardService
 
 class Grow(Action):
+    def __init__(self):
+        self._start=False
 
     def execute(self, cast, script):
         """gets the two players"""
@@ -10,5 +13,10 @@ class Grow(Action):
         player2 = cast.get_first_actor("player2")
         """makes the tails grow in their respective colors (if the game
         is still going)"""
-        snake.grow_tail(1,constants.TRON)
-        player2.grow_tail(1,constants.ENEMY)
+        keys=['a','w','s','d']
+        for i in keys:
+            if KeyboardService().is_key_down(i):
+                self._start=True
+        if self._start:
+            snake.grow_tail(1,constants.TRON)
+            player2.grow_tail(1,constants.ENEMY)
