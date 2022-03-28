@@ -1,7 +1,7 @@
 import constants
 from game.scripting.action import Action
 from game.shared.point import Point
-
+import os
 
 class ControlActorsAction(Action):
     """
@@ -35,40 +35,60 @@ class ControlActorsAction(Action):
         robot=cast.get_first_actor("player2")
         enemy=robot.get_head()
         tron=player.get_head()
-        
+        script_dir = os.path.dirname(__file__)
+
+
         # left
         if self._keyboard_service.is_key_down('a'):
             self._direction = Point(-constants.CELL_SIZE, 0)
-            tron.set_text('C:/Users/USER/Desktop/Python/group/tron/Lightcycle/Lightcycle/assets/tronplayer1.png')
-            
+            rel_path='../../assets/tronplayer1.png'
+            abs_file_path=os.path.join(script_dir,rel_path)            
+            tron.set_text(abs_file_path)
+
         # right
         if self._keyboard_service.is_key_down('d'):
             self._direction = Point(constants.CELL_SIZE, 0)
-            tron.set_text('C:/Users/USER/Desktop/Python/group/tron/Lightcycle/Lightcycle/assets/tronplayerd.png')
+            rel_path='../../assets/tronplayerd.png'
+            abs_file_path=os.path.join(script_dir,rel_path)            
+            tron.set_text(abs_file_path)
         # up
         if self._keyboard_service.is_key_down('w'):
             self._direction = Point(0, -constants.CELL_SIZE)
-            tron.set_text('C:/Users/USER/Desktop/Python/group/tron/Lightcycle/Lightcycle/assets/tronplayerw.png')
-
+            rel_path='../../assets/tronplayerw.png'
+            abs_file_path=os.path.join(script_dir,rel_path)            
+            tron.set_text(abs_file_path)
         # down
         if self._keyboard_service.is_key_down('s'):
             self._direction = Point(0, constants.CELL_SIZE)
-            tron.set_text('C:/Users/USER/Desktop/Python/group/tron/Lightcycle/Lightcycle/assets/tronplayers.png')
+            rel_path='../../assets/tronplayers.png'
+            abs_file_path=os.path.join(script_dir,rel_path)            
+            tron.set_text(abs_file_path)
+
         if self._keyboard_service.is_key_down('j'):
             self._direction2 = Point(-constants.CELL_SIZE, 0)
-            enemy.set_text('C:/Users/USER/Desktop/Python/group/tron/Lightcycle/Lightcycle/assets/tronenemyj.png')
+            rel_path='../../assets/tronenemyj.png'
+            abs_file_path=os.path.join(script_dir,rel_path)            
+            enemy.set_text(abs_file_path)
+
         # right
         if self._keyboard_service.is_key_down('l'):
             self._direction2 = Point(constants.CELL_SIZE, 0)
-            enemy.set_text('C:/Users/USER/Desktop/Python/group/tron/Lightcycle/Lightcycle/assets/tronenemyl.png')
+            rel_path='../../assets/tronenemyl.png'
+            abs_file_path=os.path.join(script_dir,rel_path)            
+            enemy.set_text(abs_file_path)
         # up
         if self._keyboard_service.is_key_down('i'):
             self._direction2 = Point(0, -constants.CELL_SIZE)
-            enemy.set_text('C:/Users/USER/Desktop/Python/group/tron/Lightcycle/Lightcycle/assets/tronenemyi.png')
+            rel_path='../../assets/tronenemyi.png'
+            abs_file_path=os.path.join(script_dir,rel_path)            
+            enemy.set_text(abs_file_path)
         # down
         if self._keyboard_service.is_key_down('k'):
             self._direction2 = Point(0, constants.CELL_SIZE)
-            enemy.set_text('C:/Users/USER/Desktop/Python/group/tron/Lightcycle/Lightcycle/assets/tronenemyk.png')
+            rel_path='../../assets/tronenemyk.png'
+            abs_file_path=os.path.join(script_dir,rel_path)            
+            enemy.set_text(abs_file_path)
+
         snake = cast.get_first_actor("snakes")
         snake.turn_head(self._direction)
         player2 =cast.get_first_actor("player2")

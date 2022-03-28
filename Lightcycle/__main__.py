@@ -1,3 +1,4 @@
+from pathlib import Path, WindowsPath
 import constants
 
 from game.casting.cast import Cast
@@ -14,13 +15,19 @@ from game.services.video_service import VideoService
 from game.shared.color import Color
 from game.shared.point import Point
 from game.scripting.grow import Grow
+import os
 
 def main():
     
     # create the cast
     cast = Cast()
-    tron = "C:/Users/USER/Desktop/Python/group/tron/Lightcycle/Lightcycle/assets/tronplayerw.png"
-    enemy ="C:/Users/USER/Desktop/Python/group/tron/Lightcycle/Lightcycle/assets/tronenemyk.png"
+    script_dir = os.path.dirname(__file__)
+    rel_path1 = "assets/tronplayerw.png"
+    rel_path2="assets/tronenemyk.png"
+    abs_file_path1 = os.path.join(script_dir, rel_path1)
+    abs_file_path2 = os.path.join(script_dir, rel_path2)
+    tron = abs_file_path1
+    enemy =abs_file_path2
     cast.add_actor("snakes", Snake(int(constants.MAX_X / 2),15*37,tron))
     cast.add_actor("scores", Score(Point(0, 0),'one'))
     cast.add_actor("player2", Snake(int(constants.MAX_X / 2),15*0,enemy))
