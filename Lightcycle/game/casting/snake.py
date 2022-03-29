@@ -65,7 +65,7 @@ class Snake(Actor):
     def _prepare_body(self,x,y,text):
         """builds the snake's body for the game to start"""
         position = Point(x - 1 * constants.CELL_SIZE, y)
-        velocity = Point(1 * constants.CELL_SIZE, 0)
+        velocity = Point(1 * constants.CELL_SIZE, 60)
         text = text
         color = constants.YELLOW
             

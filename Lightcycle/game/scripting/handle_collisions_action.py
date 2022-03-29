@@ -9,6 +9,9 @@ from game.casting.score import Score
 from game.services.keyboard_service import KeyboardService
 from game.casting.cast import Cast
 from game.casting.snake import Snake
+import pyray
+import os
+from game.services.audio_services import AudioService
 
 class HandleCollisionsAction(Action):
     """
@@ -53,6 +56,10 @@ class HandleCollisionsAction(Action):
         score2=cast.get_first_actor("score2")
         tron=head.get_text()
         enemy=head2.get_text()
+        script_dir = os.path.dirname(__file__)
+        rel_path='../../assets/sounds/explotion.wav'
+        abs_file_path=os.path.join(script_dir,rel_path) 
+
         # for segment in segments:
         #     if head.get_position().equals(segment.get_position()):
         #         self._is_game_over = True
@@ -64,13 +71,14 @@ class HandleCollisionsAction(Action):
                 
         for segment in segments:
             if head2.get_position().equals(segment.get_position()):
-                self._is_game_over = True
+                # self._is_game_over = True
                 score1.add_points(1,'one')
                 snake.clear_segments()
-                snake._prepare_body(int(constants.MAX_X / 4),int(constants.MAX_Y / 2),tron)
+                snake._prepare_body(int(constants.MAX_X / 2),15*37,tron)
                 player2.clear_segments()
-                player2._prepare_body(int(constants.MAX_X / 2)+int(constants.MAX_X / 4),int(constants.MAX_Y / 2), enemy)
-                
+                player2._prepare_body(int(constants.MAX_X / 2),15*0, enemy)
+                # AudioService().play_sound(abs_file_path)
+
         for segment in segments2:
         #     if head2.get_position().equals(segment.get_position()):
         #         self._is_game_over = True
@@ -82,11 +90,11 @@ class HandleCollisionsAction(Action):
                 
             if head.get_position().equals(segment.get_position()):
                 self._is_game_over = True 
-                score2.add_points(1,'two')
-                snake.clear_segments()
-                snake._prepare_body(int(constants.MAX_X / 4),int(constants.MAX_Y / 2),tron)
-                player2.clear_segments()
-                player2._prepare_body(int(constants.MAX_X / 2)+int(constants.MAX_X / 4),int(constants.MAX_Y / 2),enemy)
+                # score2.add_points(1,'two')
+                # snake.clear_segments()
+                # snake._prepare_body(int(constants.MAX_X / 4),int(constants.MAX_Y / 2),tron)
+                # player2.clear_segments()
+                # player2._prepare_body(int(constants.MAX_X / 2)+int(constants.MAX_X / 4),int(constants.MAX_Y / 2),enemy)
                        
 
     def _handle_game_over(self, cast, script):

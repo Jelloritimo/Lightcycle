@@ -15,6 +15,7 @@ from game.services.video_service import VideoService
 from game.shared.color import Color
 from game.shared.point import Point
 from game.scripting.grow import Grow
+from game.scripting.auto_move import AutoMove
 import os
 
 def main():
@@ -31,7 +32,7 @@ def main():
     cast.add_actor("snakes", Snake(int(constants.MAX_X / 2),15*37,tron))
     cast.add_actor("scores", Score(Point(0, 0),'one'))
     cast.add_actor("player2", Snake(int(constants.MAX_X / 2),15*0,enemy))
-    cast.add_actor('score2', Score(Point(780, 0),'two'))
+    # cast.add_actor('score2', Score(Point(780, 0),'two'))
    
     # start the game
     keyboard_service = KeyboardService()
@@ -39,6 +40,7 @@ def main():
 
     script = Script()
     script.add_action("input", ControlActorsAction(keyboard_service))
+    script.add_action("input", AutoMove())
     script.add_action("update", MoveActorsAction())
     script.add_action("update", HandleCollisionsAction())
     script.add_action("output", DrawActorsAction(video_service))
