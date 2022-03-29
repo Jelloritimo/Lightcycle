@@ -53,9 +53,13 @@ class HandleCollisionsAction(Action):
         segments = snake.get_segments()[1:]
         segments2 =player2.get_segments()[1:]
         score1=cast.get_first_actor("scores")
-        score2=cast.get_first_actor("score2")
         tron=head.get_text()
         enemy=head2.get_text()
+        enemy_list=cast.get_actors('player2')
+        if len(enemy_list)>1:
+            enemy2=enemy_list[1]
+            head3=enemy2.get_head()
+            segments3=enemy2.get_segments()
         script_dir = os.path.dirname(__file__)
         rel_path='../../assets/sounds/explotion.wav'
         abs_file_path=os.path.join(script_dir,rel_path) 
@@ -77,7 +81,20 @@ class HandleCollisionsAction(Action):
                 snake._prepare_body(int(constants.MAX_X / 2),15*37,tron)
                 player2.clear_segments()
                 player2._prepare_body(int(constants.MAX_X / 2),15*0, enemy)
+                if len(enemy_list)>1:
+                    enemy2.clear_segments()
+                    enemy2._prepare_body(int(constants.MAX_X/2)+90, 15*0, enemy)
                 # AudioService().play_sound(abs_file_path)
+            if len(enemy_list)>1:
+                if head3.get_position().equals(segment.get_position()):
+                # self._is_game_over = True
+                    score1.add_points(1,'one')
+                    snake.clear_segments()
+                    snake._prepare_body(int(constants.MAX_X / 2),15*37,tron)
+                    player2.clear_segments()
+                    player2._prepare_body(int(constants.MAX_X / 2),15*0, enemy)
+                    enemy2.clear_segments()
+                    enemy2._prepare_body(int(constants.MAX_X / 2)+90,15*0, enemy)
 
         for segment in segments2:
         #     if head2.get_position().equals(segment.get_position()):
@@ -95,7 +112,10 @@ class HandleCollisionsAction(Action):
                 # snake._prepare_body(int(constants.MAX_X / 4),int(constants.MAX_Y / 2),tron)
                 # player2.clear_segments()
                 # player2._prepare_body(int(constants.MAX_X / 2)+int(constants.MAX_X / 4),int(constants.MAX_Y / 2),enemy)
-                       
+        if len(enemy_list)>1:
+            for segment in segments3:
+                if head.get_position().equals(segment.get_position()):
+                    self._is_game_over = True 
 
     def _handle_game_over(self, cast, script):
         """Shows the 'game over' message and turns the snake and food white if the game is over.

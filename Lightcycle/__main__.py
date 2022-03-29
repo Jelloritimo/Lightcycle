@@ -16,6 +16,7 @@ from game.shared.color import Color
 from game.shared.point import Point
 from game.scripting.grow import Grow
 from game.scripting.auto_move import AutoMove
+from game.scripting.add_enemy import AddEnemy
 import os
 
 def main():
@@ -43,6 +44,7 @@ def main():
     script.add_action("input", AutoMove())
     script.add_action("update", MoveActorsAction())
     script.add_action("update", HandleCollisionsAction())
+    script.add_action("update", AddEnemy())
     script.add_action("output", DrawActorsAction(video_service))
     script.add_action("update", Grow())
     
