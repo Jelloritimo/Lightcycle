@@ -60,22 +60,12 @@ class HandleCollisionsAction(Action):
             enemy2=enemy_list[1]
             head3=enemy2.get_head()
             segments3=enemy2.get_segments()
-        script_dir = os.path.dirname(__file__)
-        rel_path='../../assets/sounds/explotion.wav'
-        abs_file_path=os.path.join(script_dir,rel_path) 
-
-        # for segment in segments:
-        #     if head.get_position().equals(segment.get_position()):
-        #         self._is_game_over = True
-        #         score2.add_points(1)
-        #         snake.clear_segments()
-        #         snake._prepare_body()
-        #         player2.clear_segments()
-        #         player2._prepare_body()
+        # script_dir = os.path.dirname(__file__)
+        # rel_path='../../assets/sounds/explotion.wav'
+        # abs_file_path=os.path.join(script_dir,rel_path) 
                 
         for segment in segments:
             if head2.get_position().equals(segment.get_position()):
-                # self._is_game_over = True
                 score1.add_points(1,'one')
                 snake.clear_segments()
                 snake._prepare_body(int(constants.MAX_X / 2),15*37,tron)
@@ -87,7 +77,6 @@ class HandleCollisionsAction(Action):
                 # AudioService().play_sound(abs_file_path)
             if len(enemy_list)>1:
                 if head3.get_position().equals(segment.get_position()):
-                # self._is_game_over = True
                     score1.add_points(1,'one')
                     snake.clear_segments()
                     snake._prepare_body(int(constants.MAX_X / 2),15*37,tron)
@@ -97,21 +86,8 @@ class HandleCollisionsAction(Action):
                     enemy2._prepare_body(int(constants.MAX_X / 2)+90,15*0, enemy)
 
         for segment in segments2:
-        #     if head2.get_position().equals(segment.get_position()):
-        #         self._is_game_over = True
-        #         score1.add_points(1)
-        #         snake.clear_segments()
-        #         snake._prepare_body()
-        #         player2.clear_segments()
-        #         player2._prepare_body()
-                
             if head.get_position().equals(segment.get_position()):
                 self._is_game_over = True 
-                # score2.add_points(1,'two')
-                # snake.clear_segments()
-                # snake._prepare_body(int(constants.MAX_X / 4),int(constants.MAX_Y / 2),tron)
-                # player2.clear_segments()
-                # player2._prepare_body(int(constants.MAX_X / 2)+int(constants.MAX_X / 4),int(constants.MAX_Y / 2),enemy)
         if len(enemy_list)>1:
             for segment in segments3:
                 if head.get_position().equals(segment.get_position()):

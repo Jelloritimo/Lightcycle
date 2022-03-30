@@ -10,6 +10,7 @@ class MoveActorsAction(Action):
     """
     def __init__(self):
         self._start=False
+        self._stop=True
 
     def execute(self, cast, script):
         """Executes the move actors action.
@@ -21,9 +22,21 @@ class MoveActorsAction(Action):
         
         actors = cast.get_all_actors()
         keys=['a','w','s','d']
+        score=cast.get_first_actor('scores')
         for i in keys:
             if KeyboardService().is_key_down(i):
                 self._start=True
         if self._start:
-            for actor in actors:
-                actor.move_next()
+            if score.get_points()<8:
+                for actor in actors:
+                    if actor!=actors[0]:
+                        actor.move_next()
+                    else:
+                        if self._stop:
+                            actor.move_next()
+                            self._stop=False
+                        else:
+                            self._stop=True
+            else:
+                for actor in actors:
+                    actor.move_next()

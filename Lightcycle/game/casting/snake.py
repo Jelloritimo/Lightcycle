@@ -19,6 +19,7 @@ class Snake(Actor):
         super().__init__()
         self._segments = []
         self._prepare_body(x,y,text)
+        self.turn_head(Point(0, -constants.CELL_SIZE))
         self._segment_text='_'
 
     def get_segments(self):
@@ -75,6 +76,7 @@ class Snake(Actor):
         segment.set_text(text)
         segment.set_color(color)
         self._segments.append(segment)
+
 
     def clear_segments(self):
         """clears all segments from its list"""

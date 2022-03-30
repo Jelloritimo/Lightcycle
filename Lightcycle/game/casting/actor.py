@@ -1,7 +1,7 @@
 import constants
 from game.shared.color import Color
 from game.shared.point import Point
-
+import time
 
 class Actor:
     """A visible, moveable thing that participates in the game. 
@@ -76,6 +76,7 @@ class Actor:
         x = (self._position.get_x() + self._velocity.get_x()) % constants.MAX_X
         y = (self._position.get_y() + self._velocity.get_y()) % constants.MAX_Y
         self._position = Point(x, y)
+        # time.sleep(.1)
 
     def set_color(self, color):
         """Updates the color to the given one.

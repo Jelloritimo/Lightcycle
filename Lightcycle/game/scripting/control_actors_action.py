@@ -3,7 +3,7 @@ from game.scripting.action import Action
 from game.shared.point import Point
 import os
 from game.scripting.move_actors_action import MoveActorsAction
-
+from game.scripting.handle_collisions_action import HandleCollisionsAction
 class ControlActorsAction(Action):
     """
     An input action that controls the snake.
