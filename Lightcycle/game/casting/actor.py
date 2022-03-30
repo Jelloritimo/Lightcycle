@@ -76,7 +76,6 @@ class Actor:
         x = (self._position.get_x() + self._velocity.get_x()) % constants.MAX_X
         y = (self._position.get_y() + self._velocity.get_y()) % constants.MAX_Y
         self._position = Point(x, y)
-        # time.sleep(.1)
 
     def set_color(self, color):
         """Updates the color to the given one.

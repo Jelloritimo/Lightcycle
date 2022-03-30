@@ -36,6 +36,10 @@ class DrawActorsAction(Action):
         if len(enemy_list)>1:
             segments3=enemy_list[1].get_segments()
             self._video_service.draw_actors(segments3)
+        if len(enemy_list)>2:
+            print('drawcorrect')
+            segments4=enemy_list[2].get_segments()
+            self._video_service.draw_actors(segments4)      
         segments2=player2.get_segments()
         segments = snake.get_segments()
         messages = cast.get_actors("messages")

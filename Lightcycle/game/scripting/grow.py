@@ -16,6 +16,8 @@ class Grow(Action):
         score=cast.get_first_actor('scores')
         if len(enemy_list)>1:
             enemy2=enemy_list[1]
+        if len(enemy_list)>2:
+            enemy3=enemy_list[2]        
         """makes the tails grow in their respective colors (if the game
         is still going)"""
         keys=['a','w','s','d']
@@ -34,3 +36,5 @@ class Grow(Action):
             player2.grow_tail(1,constants.ENEMY)
             if len(enemy_list)>1:
                 enemy2.grow_tail(1,constants.ENEMY)
+            if len(enemy_list)>2:
+                enemy3.grow_tail(1,constants.ENEMY)
