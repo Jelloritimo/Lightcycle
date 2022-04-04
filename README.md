@@ -37,5 +37,5 @@ Contributors
 code write ; Agustin
 scores update after collision - Nilo
 remove white and make it restarted after collision: Michelle Farr, Peter otim
-Repository organization, README, and Comments : Bryce
+Repository organization, README, Comments, and game idea : Bryce
 ---
