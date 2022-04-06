@@ -34,7 +34,7 @@ Nilo Urmeneta(urmenetanilo@gmail.com), peter otim (Petercharlesotim@gmail.com), 
 
 
 Contributors
-code write ; Agustin
+Creation of auto-move, grow, and add-enemy classes. Adition of Images and trails. Speed modifications: Agustin Aguilar.
 scores update after collision - Nilo
 remove white and make it restarted after collision: Michelle Farr, Peter otim
 Repository organization, README, Comments, and game idea : Bryce
